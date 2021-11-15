@@ -1,0 +1,101 @@
+<section id="hero" class="blog-hero"
+    [ngStyle]="{'background-image': 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(' + blog.image + ')'}">
+    <div class="title">
+        {{blog.title}}
+    </div>
+    <div class="published-date" *ngIf="blog.displayEdited">
+        Published on: {{blog.displayPublished}} / Last edited: {{blog.displayEdited}}
+    </div>
+    <div class="published-date" *ngIf="!blog.displayEdited">
+        Published on: {{blog.displayPublished}}
+    </div>
+    <div class="read-time">
+        Read Time: {{blog.readTime}}
+    </div>
+</section>
+
+<section class="content-section">
+    <div class="title">
+        {{blog.content[0]}}
+    </div>
+    <blockquote class="sidekick">
+        Every story has a beginning and an end. What lies between those two points is the journey.
+        <cite> R.C Richter</cite>
+    </blockquote>
+    <div class="body">
+        <p class="dropcap">
+            Having grown up in Colorado, my family always had loose connections to Germany. From a family recipe for
+            cottage cheese dumplings called <em>"Käsmolish"</em> (this was the first
+            time I had ever tried to write that word) to a grandmother who spoke a small amount of German. But for 22
+            years, I had
+            never met anyone from Germany
+            until I began my graduate studies in Vancouver, CA. I quickly found myself with a German roommate,
+            friends from my studies and before I
+            knew it, most of my friends were German. This was my first sign I would move to Germany - <strong>I
+                seemed to get along well with Germans!</strong>
+            <br>
+            With all of this German influence, I slowly learned about various German traditions: <em>Glühwein around
+                Christmas, Spätzle with bigger
+                dinners, How to drink for Vatertag/Herrentag.</em> Soon I found myself adoring traditions I had never
+            known,
+            and looked forward to doing each year. <strong>Tradition and culture became important to me!</strong>
+            <br><br>
+            When I finished my master's, I took a many-month vacation to travel the world and learn cultures I had
+            never been exposed to. I had begun in Japan, but even there I quickly found myself meeting large groups
+            of Germans. Due to this, I spontaneously decided to take a month trip to Germany and stay on the couches of
+            the people I met traveling - <em>Berling, Hamburg, Munich,
+                Kaiserslautern.</em> In each city I enjoyed learning what was unique about it, trying the local
+            specialites and exploring the picturesque city-scape.
+            <br><br>
+            At the end of my travels, I took up a job in San Jose, California and started my career in tech but
+            continued to keep
+            close ties to those I had met in my journey. One day while I was out surfing, I met another German and again
+            quickly made a friend. It was here I realized that <strong>I get along with Germans better than with
+                Americans!</strong>
+            If I had to pin point why, I'd believe it is the consistent <em>open-minded and tolerant</em> people I had
+            met from Germany that resonated with me. Compound this with that deteriorating political and deplorable
+            healthcare situations in the US, my choice to immigrate became clear.
+            <br><br>
+            After around 2 years in California starting 2020, I had officially decided that I must start making
+            preparations. I began
+            learning German through <a target="_blank" rel="noopener noreferrer"
+                href="https://www.duolingo.com/">Duolingo</a> and <a target="_blank" rel="noopener noreferrer"
+                href="https://learngerman.dw.com/en/overview">Deutche Welle</a> for about a year and investigating
+            immigration pathways. Both luckily and unfortunately, 2020 also held the pandemic. The <em>good news</em> is
+            that I has more time
+            to plan my move, and I think we all know the <em>bad news...</em>
+            <br><br>
+            After much struggle, and many plans that fell through, I announced to my boss in June of 2021 that I would
+            be
+            leaving for Germany that August - it was the best move I ever made.
+        </p>
+    </div>
+</section>
+
+<section class="content-section">
+    <div class="title">
+        {{blog.content[1]}}
+    </div>
+    <blockquote class="sidekick">
+        My favorite things in life don't cost any money. It's really clear that the most precious resource we all have
+        is time.
+        <cite> Steve Jobs</cite>
+    </blockquote>
+    <div class="body">
+        <p class="dropcap">
+            Some resources I have found along the way may provide use to others who don't know what to look for.
+            Hopefully you as the reader may find help in any of these links!
+        </p>
+        <br>
+        <div class="sub-title">
+            <a href="https://www.youtube.com/channel/UCsseMKDbfwZMoJEtQXA2Ijw/videos">Obanuu - Youtube</a>
+        </div>
+        <p>
+            Here is a playlist of videos that helped me to learn about immigration opportunities. As a bonus, Mik is
+            such a wonderful human and will even provide advice if you write to his <a
+                href="https://www.facebook.com/groups/migrationgermany/about">facebook group</a>.
+        </p>
+    </div>
+</section>
+
+<app-like-button [page]="page"></app-like-button>

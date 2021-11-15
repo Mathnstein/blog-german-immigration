@@ -1,10 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import * as AOS from 'aos';
 
-@Component({
+@Component( {
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.sass']
-})
-export class AppComponent {
-  title = 'angular-blog';
+  styleUrls: [ './app.component.sass' ]
+} )
+export class AppComponent implements OnInit {
+
+  constructor() {
+    console.log( AOS ); // loaded script
+  }
+
+  ngOnInit(): void {
+    AOS.init();
+  }
 }

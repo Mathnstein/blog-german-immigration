@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "blog-germany-immigration": {
+      "hosting": {
+        "angular-blog": [
+          "blog-germany-immigration"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "blog-germany-immigration"
+  }
+}

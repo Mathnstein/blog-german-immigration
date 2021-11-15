@@ -1,0 +1,123 @@
+<section id="hero">
+    <div class="container-fluid"
+        style="background-image: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(./assets/img/German-Flag.jpg)">
+        <div class="row">
+            <div class="col-12">
+                <div class="title">
+                    German Immigration
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="sub-title">
+                    A resource hub to immigration from someone who just did it.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="desc">
+    <div class="container-fluid">
+        <div class="title" data-aos="fade-down">
+            About the Author
+        </div>
+        <p class="body" data-aos="fade-left">
+            American mathematician Cody Griffith was born and raised in Denver, Colorado. He received his BSc. from
+            Metropolitan State University of Denver and his MSc. from the University of British Columbia, Vancouver.
+            Following some international travels, he worked as a developer in San Jose, California for several years
+            before
+            realizing it was time to shift his life and career goals to Germany!
+            <br>
+            <br>
+            Facing an assortment of troubles with immigrating during the SARS CoV2 pandemic, Cody decided to form this
+            blog
+            to help others wanting to do something similar. Here you will find the process explained in plain English
+            and
+            resources that you can reach out to for help.
+        </p>
+    </div>
+</section>
+
+<section id="blog-entries" class="bg-dark">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="title col-4" data-aos="fade-down">
+                Blogs
+            </div>
+        </div>
+        <div *ngFor="let blog of blogs | async; let even=even">
+            <div class="blog-item even" *ngIf="even">
+                <div class="row" style="background-color: white;">
+                    <div class="col-md-4 blog-item-content" data-aos="fade-right">
+                        <div class="blog-item-title">
+                            <a [routerLink]="blog.url">{{blog.title}}</a>
+                        </div>
+                        <div class="blog-item-subtitle" *ngIf="!blog.displayEdited">
+                            <p>Published on: {{blog.displayPublished}}</p>
+                        </div>
+                        <div class="blog-item-subtitle" *ngIf="blog.displayEdited">
+                            <p>Published on: {{blog.displayPublished}} - Edited on: {{blog.displayEdited}}</p>
+                        </div>
+                        <div class="blog-item-readtime">
+                            <p>
+                                Read Time: {{blog.readTime}}
+                            </p>
+                        </div>
+                        <div class="blog-item-list">
+                            <p>Topics discussed:</p>
+                            <ul>
+                                <li *ngFor="let item of blog.content">
+                                    {{ item }}
+                                </li>
+                            </ul>
+                        </div>
+                        <a [routerLink]="blog.url">See article →</a>
+                    </div>
+
+                    <div class="col-md-8 blog-item-image" data-aos="fade-left"
+                        [ngStyle]="{ 'background-image': 'url(' + blog.image + ')'}">
+                        <a [routerLink]="blog.url"></a>
+                        <div class="hidden-block"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog-item odd" *ngIf="!even">
+                <div class="row" style="background-color: white;">
+                    <div class="col-md-8 blog-item-image" data-aos="fade-right"
+                        [ngStyle]="{ 'background-image': 'url(' + blog.image + ')'}">
+                        <a [routerLink]="blog.url"></a>
+                        <div class="hidden-block"></div>
+                    </div>
+                    <div class="col-md-4 blog-item-content" data-aos="fade-left">
+                        <div class="blog-item-title">
+                            <a [routerLink]="blog.url">{{blog.title}}</a>
+                        </div>
+                        <div class="blog-item-subtitle" *ngIf="!blog.displayEdited">
+                            <p>Published on: {{blog.displayPublished}}</p>
+                        </div>
+                        <div class="blog-item-subtitle" *ngIf="blog.displayEdited">
+                            <p>Published on: {{blog.displayPublished}} - Edited on: {{blog.displayEdited}}</p>
+                        </div>
+                        <div class="blog-item-readtime">
+                            <p>
+                                Read Time: {{blog.readTime}}
+                            </p>
+                        </div>
+                        <div class="blog-item-list">
+                            <p>Topics discussed:</p>
+                            <ul>
+                                <li *ngFor="let item of blog.content">
+                                    {{ item }}
+                                </li>
+                            </ul>
+                        </div>
+                        <a [routerLink]="blog.url">See article →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

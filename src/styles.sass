@@ -1,1 +1,95 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap'
+
+
+// Variables
+$light-gray: #D3D3D3
+
+// All document style
+*
+    font-family: 'Roboto', sans-serif
+
+
+
+// Blog level code
+.blog-hero
+    height: 50vh
+    background-size: cover
+    background-attachment: fixed
+    background-position: center
+
+    margin-bottom: 4%
+
+    color: white
+    text-align: center
+    display: flex
+    flex-direction: column
+    justify-content: center
+    line-height: 3rem
+    font-weight: bold
+    
+    .title
+        font-size: 3rem
+
+    .published-date
+        font-size: 1.5rem
+
+    .read-time
+        color: $light-gray
+        font-style: italic
+
+.sidekick 
+    // margin: 0 5% 0 5% 
+    position: relative
+    padding-left: 1em
+    border-left: 0.2em solid $light-gray
+    font-family: 'Roboto', serif
+    font-size: 2.4em
+    line-height: 1.5em
+    font-weight: 100
+
+.sidekick:before, .sidekick:after 
+  font-family: Calibri
+    color: $light-gray
+    font-size: 34px
+
+.sidekick:before 
+    content: '\201e'
+
+.sidekick:after 
+    content: '\201c'
+
+.sidekick cite 
+    font-size: 50%
+    text-align: center
+    top:50%
+
+.sidekick cite:before 
+    content: ' \2015 '
+
+.dropcap:first-letter
+  float: left
+  line-height: 85%
+  width: .7em
+  font-size: 400%
+  font-family: georgia
+
+.content-section
+    padding-bottom: 2vh
+    margin: 5%
+
+    .title
+        padding-bottom: 2%
+        font-size: 3rem
+        line-height: 3rem
+        font-weight: bold
+    
+    .sub-title
+        font-size: 1.5rem
+        font-weight: bold
+
+    .body
+        font-size: 1.2rem
+        line-height: 1.4rem
