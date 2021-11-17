@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Meta, Title } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +20,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SEOService } from './services/seo.service';
 
 @NgModule( {
   declarations: [
@@ -47,7 +48,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   providers: [
     ScreenTrackingService,
     UserTrackingService,
-    BlogService
+    BlogService,
+    SEOService,
+    Title,
+    Meta
   ],
   bootstrap: [ AppComponent ]
 } )

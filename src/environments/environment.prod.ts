@@ -8,5 +8,6 @@ export const environment = {
     messagingSenderId: '349543594115',
     measurementId: 'G-YY5QEL6NKT',
   },
+  appUrl: 'https://blog-germany-immigration.web.app/',
   production: true
 };

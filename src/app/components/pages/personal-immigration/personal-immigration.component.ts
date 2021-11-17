@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Blog } from 'src/app/interfaces/blog';
 import { BlogService } from 'src/app/services/blog.service';
+import { SEOService } from 'src/app/services/seo.service';
 
 @Component( {
   selector: 'app-personal-immigration',
@@ -22,12 +24,14 @@ export class PersonalImmigrationComponent implements OnInit {
 
   clicked: boolean = false;
 
-  constructor( private blogService: BlogService ) { }
+  constructor( private blogService: BlogService, private seoService: SEOService ) { }
 
   ngOnInit(): void {
     this.blogService.checkBlog( this.page, this.blog ).then( blog => {
       this.blog = blog
     } );
+
+    this.seoService.extractBlogTags( this.blog );
   }
 
 }
