@@ -35,7 +35,7 @@ export class SEOService {
       { property: 'description', content: blog.content.join( ', ' ) },
       { property: 'og:description', content: blog.content.join( ', ' ) },
       { property: 'og:url', content: environment.appUrl + blog.url },
-      { property: 'og:image', content: blog.image },
+      { property: 'og:image', content: environment.appUrl + blog.image },
     ];
     this.updateMetaTags( metaTags )
   }

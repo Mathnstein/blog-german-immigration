@@ -1,4 +1,4 @@
-const assetRoute: string = 'assets/img/';
+const assetRoute: string = '/assets/img/';
 
 export const allBlogs: any = {
     Home: {

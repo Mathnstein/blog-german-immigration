@@ -26,8 +26,9 @@ fs.readFile(indexFilePath, 'utf8', function (err, data) {
                 }
             });
         } else {
-            description = val.description;
+            description = val.content;
         };
+
         result = result.replace(/\$OG_TITLE/g, val.title);
         result = result.replace(/\$OG_DESCRIPTION/g, description);
         result = result.replace(/\$OG_IMAGE/g, val.image);
