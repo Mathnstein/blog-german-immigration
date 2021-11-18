@@ -1,6 +1,6 @@
 console.log('Begin prerender of HTML pages');
-const { metadata } = require('./src/metadata');
-
+const { allBlogs } = require('./src/allBlogs');
+// console.log(allBlogs)
 
 const fs = require('fs');
 const path = require('path');
@@ -14,25 +14,30 @@ fs.readFile(indexFilePath, 'utf8', function (err, data) {
         return console.error(err);
     }
 
-    metadata.forEach(({ url, title, description, image }) => {
+    for (const [key, val] of Object.entries(allBlogs)) {
         let result = data;
-        result = result.replace(/\$OG_TITLE/g, title);
-        result = result.replace(/\$OG_DESCRIPTION/g, description);
-        result = result.replace(/\$OG_IMAGE/g, '/assets/img/' + image);
-        // result = result.replace(/\$CANONICAL_URL/g, canonical_url);
-        let filename = url.substring(1).replace(/\//g, '-');
-        if (filename.length) {
-            filename = filename + '.html';
+        let folder = val.url.substring(1).replace(/\//g, '-');
+
+        if (folder) {
+            description = val.content.join(', ');
+            fs.mkdir(path.join(__dirname, './', 'dist', 'angular-blog', folder), (err) => {
+                if (err) {
+                    // console.error(err);
+                }
+            });
         } else {
-            filename = 'index.html';
-        }
-        fs.writeFile(path.resolve(__dirname, './', 'dist', 'angular-blog', filename), result, (err) => {
+            description = val.description;
+        };
+        result = result.replace(/\$OG_TITLE/g, val.title);
+        result = result.replace(/\$OG_DESCRIPTION/g, description);
+        result = result.replace(/\$OG_IMAGE/g, val.image);
+
+        fs.writeFile(path.resolve(__dirname, './', 'dist', 'angular-blog', folder, 'index.html'), result, (err) => {
             if (err) {
                 console.log(err);
             } else {
-                console.log('Saved ' + filename);
-            }
+                console.log('Saved ' + folder + '/index.html');
+            };
         });
-    })
-
+    };
 });

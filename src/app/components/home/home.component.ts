@@ -5,7 +5,7 @@ import { Blog } from 'src/app/interfaces/blog';
 import { BlogService } from 'src/app/services/blog.service';
 import { SEOService } from 'src/app/services/seo.service';
 import { environment } from 'src/environments/environment';
-
+import { allBlogs } from 'src/allBlogs';
 
 @Component( {
   selector: 'app-home',
@@ -15,14 +15,13 @@ import { environment } from 'src/environments/environment';
 export class HomeComponent implements OnInit {
   blogs: Observable<Blog[]>;
 
-  title = 'Coming to Germany...'
+  seo = allBlogs.Home;
 
   metaTags: MetaDefinition[] = [
-    { property: 'og:title', content: this.title },
-    { property: 'description', content: 'A resource hub to immigration from someone who just did it.' },
-    { property: 'og:description', content: 'A resource hub to immigration from someone who just did it.' },
-    { property: 'og:url', content: environment.appUrl },
-    { property: 'og:image', content: environment.appUrl + 'German-Flag.jpg' },
+    { property: 'og:title', content: this.seo.title },
+    { property: 'description', content: this.seo.content },
+    { property: 'og:description', content: this.seo.content },
+    { property: 'og:image', content: this.seo.image },
   ]
 
   constructor( private blogService: BlogService, private seoService: SEOService ) {
@@ -32,7 +31,7 @@ export class HomeComponent implements OnInit {
     this.blogs = this.blogService.blogs;
 
     this.seoService.createCanonicalLink();
-    this.seoService.updateTitle( this.title );
+    this.seoService.updateTitle( this.seo.title );
     this.seoService.updateMetaTags( this.metaTags )
   }
 

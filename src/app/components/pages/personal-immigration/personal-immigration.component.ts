@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 import { Blog } from 'src/app/interfaces/blog';
 import { BlogService } from 'src/app/services/blog.service';
 import { SEOService } from 'src/app/services/seo.service';
+import { allBlogs } from 'src/allBlogs';
 
 @Component( {
   selector: 'app-personal-immigration',
@@ -10,15 +10,7 @@ import { SEOService } from 'src/app/services/seo.service';
   styleUrls: [ './personal-immigration.component.sass' ]
 } )
 export class PersonalImmigrationComponent implements OnInit {
-  blog: Blog = {
-    readTime: '10 minutes',
-    title: 'Personal Immigration',
-    content: [ 'My Story', 'Helpful Resources' ],
-    image: 'assets/img/Koeln-Brueke.jpg',
-    likes: 0,
-    url: '/personal-immigration',
-    publishedOn: new Date( '2021-11-10' ),
-  }
+  blog: Blog = allBlogs.PersonalImmigration;
 
   page = this.blog.url;
 
@@ -27,6 +19,7 @@ export class PersonalImmigrationComponent implements OnInit {
   constructor( private blogService: BlogService, private seoService: SEOService ) { }
 
   ngOnInit(): void {
+    console.log( this.blog )
     this.blogService.checkBlog( this.page, this.blog ).then( blog => {
       this.blog = blog
     } );

@@ -4,10 +4,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build && tsc src/allBlogs.ts && node prerender-metadata.js",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "deploy": "ng build && node prerender-metadata.js && ng deploy && git add ."
+    "deploy": "npm run build && firebase deploy && git add . && npm run clean",
+    "clean": "del-cli ./src/allBlogs.js"
   },
   "private": true,
   "dependencies": {
@@ -42,7 +43,7 @@
     "@angular/cli": "~12.2.9",
     "@angular/compiler-cli": "~12.2.0",
     "@types/jasmine": "~3.8.0",
-    "@types/node": "^12.11.1",
+    "@types/node": "^12.20.37",
     "jasmine-core": "~3.8.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",

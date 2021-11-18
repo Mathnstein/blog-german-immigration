@@ -13,8 +13,10 @@ const metadata = [
     {
         url: Routes.PersonalImmigration,
         title: 'Personal Immigration',
-        description: 'My Story, Helpful Resources',
-        image: 'Koeln-Brueke.jpg'
+        content: ['My Story', 'Helpful Resources'],
+        image: 'Koeln-Brueke.jpg',
+        publishedOn: new Date('2021-11-10'),
+        readTime: '10 minutes'
     }
 ];
 
