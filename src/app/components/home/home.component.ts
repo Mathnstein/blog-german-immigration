@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { Blog } from 'src/app/interfaces/blog';
 import { BlogService } from 'src/app/services/blog.service';
 import { SEOService } from 'src/app/services/seo.service';
-import { environment } from 'src/environments/environment';
 import { allBlogs } from 'src/allBlogs';
 
 @Component( {
