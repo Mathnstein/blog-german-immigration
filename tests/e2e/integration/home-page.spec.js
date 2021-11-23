@@ -1,7 +1,8 @@
 describe('Home page', () => {
     beforeEach(() => {
         cy.visit('/');
-    })
+    });
+
     it('metadata is displayed correctly', () => {
         // check for the name 'Coming to Germany...' in hero, menu and page title
         cy.get('.navbar-brand').contains('Coming to Germany...');
@@ -21,37 +22,18 @@ describe('Home page', () => {
     });
 
     it('check all links in footer are clickable', () => {
-        // LinkedIn
-        // cy.get('[href="https://www.linkedin.com/in/cody-griffith-8771a8145/"]').then(link => {
-        //     cy
-        //         .request(link.prop('href'))
-        //         .its('status')
-        //         .should('eq', 200);
-
-        // });
-        // Github
-        cy.get('[href="https://github.com/Mathnstein"]').then(link => {
-            cy
-                .request(link.prop('href'))
-                .its('status')
-                .should('eq', 200);
-
-        });
-        // Facebook
-        cy.get('[href="https://www.facebook.com/cody.griffith.10"]').then(link => {
-            cy
-                .request(link.prop('href'))
-                .its('status')
-                .should('eq', 200);
-
-        });
-        // Portfolio
-        cy.get('[href="https://Mathnstein.github.io"]').then(link => {
-            cy
-                .request(link.prop('href'))
-                .its('status')
-                .should('eq', 200);
-
+        cy.get('.socials').scrollIntoView().children().each(($a) => {
+            // Check each link has a valid endpoint
+            cy.wrap($a).invoke('attr', 'href').then(href => {
+                if (!href.includes('linkedin')) {
+                    //  Filter out linkin, they have a weird http request protocol
+                    cy.request(href).wait(500).its('status').should('eq', 200);
+                }
+            });
+            // Check each link hovers correctly
+            cy.wrap($a).realHover().wait(1000).should('have.css', 'opacity').then((val) => {
+                cy.wrap(Number(val)).should('be.lt', 1)
+            });
         });
     });
 
@@ -71,6 +53,44 @@ describe('Home page', () => {
         cy.get('.nav-link').should('not.be.visible');
 
         // Check blogs are now stacking by checking the image is at least the screen size of the device
-        cy.get('.blog-item-image').scrollIntoView().invoke('width').should('be.greaterThan', 374);
+        cy.get('.blog-item-image').scrollIntoView().invoke('width').should('be.gte', 375);
+    });
+});
+
+describe('Personal Immigration', () => {
+    beforeEach(() => {
+        cy.visit('/personal-immigration/').wait(1500);
+    });
+
+    it('metadata is displayed correctly', () => {
+        // check for the name 'Coming to Germany...' in hero, menu and page title
+        cy.title().should('eq', 'Personal Immigration')
+        cy.get('#hero > .title').contains('Personal Immigration');
+    });
+
+    it('like button works as expected', () => {
+        let currentCount;
+        let newCount;
+        cy.scrollTo('bottom');
+        // Count shows up
+        cy.get('.count').then((val) => {
+            currentCount = Number(val.text());
+            cy.wrap(currentCount).should('be.gte', 0);
+        });
+
+        // Check adding a like works
+        cy.get('.heart').click().wait(1000).should('have.css', 'color', 'rgb(255, 0, 0)');
+        cy.get('.count').then((val) => {
+            newCount = Number(val.text());
+            cy.wrap(newCount).should('be.eq', currentCount + 1);
+        });
+
+        // Check removing a like works
+        cy.get('.heart').click().wait(1000).should('have.css', 'color', 'rgb(0, 0, 0)');
+        cy.get('.count').then((val) => {
+            newCount = Number(val.text());
+            cy.wrap(newCount).should('be.eq', currentCount);
+        });
+
     });
 });

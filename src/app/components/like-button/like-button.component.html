@@ -3,9 +3,12 @@
         <div class="col-12 d-flex justify-content-end">
             Helpful? Drop a like!
             <div class="pl-5">
-                {{likes}}
+                <p class="count">
+                    {{likes}}
+                </p>
             </div>
-            <button mat-icon-button [ngStyle]="{'color': color}" aria-label="Example icon button with a heart icon">
+            <button class="heart" mat-icon-button [ngStyle]="{'color': color}"
+                aria-label="Example icon button with a heart icon">
                 <mat-icon [inline]="true" (click)="likeThis()">favorite</mat-icon>
             </button>
         </div>
