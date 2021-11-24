@@ -1,1 +1,17 @@
-<p>preflight-checks works!</p>
+<section id="hero" class="blog-hero"
+    [ngStyle]="{'background-image': 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(' + blog.image + ')'}">
+    <div class="title">
+        {{blog.title}}
+    </div>
+    <div class="published-date" *ngIf="blog.displayEdited">
+        Published on: {{blog.displayPublished}}
+        <br>
+        Last edited: {{blog.displayEdited}}
+    </div>
+    <div class="published-date" *ngIf="!blog.displayEdited">
+        Published on: {{blog.displayPublished}}
+    </div>
+    <div class="read-time">
+        Read Time: {{blog.readTime}}
+    </div>
+</section>

@@ -37,6 +37,12 @@ export class SEOService {
       { property: 'og:url', content: environment.appUrl + blog.url },
       { property: 'og:image', content: environment.appUrl + blog.image },
     ];
+    if ( blog.displayPublished ) {
+      metaTags.push( { property: 'article:published_time', content: blog.displayPublished } )
+    }
+    if ( blog.displayEdited ) {
+      metaTags.push( { property: 'article:modified_time', content: blog.displayEdited } )
+    }
     this.updateMetaTags( metaTags )
   }
 }

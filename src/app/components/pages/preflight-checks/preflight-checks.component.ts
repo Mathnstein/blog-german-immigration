@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { allBlogs } from 'src/allBlogs';
 import { Blog } from 'src/app/interfaces/blog';
 import { BlogService } from 'src/app/services/blog.service';
+import { SEOService } from 'src/app/services/seo.service';
 
 @Component( {
   selector: 'app-preflight-checks',
@@ -8,25 +10,20 @@ import { BlogService } from 'src/app/services/blog.service';
   styleUrls: [ './preflight-checks.component.sass' ]
 } )
 export class PreflightChecksComponent implements OnInit {
-  page: string = this.constructor.name;
+  blog: Blog = allBlogs.PreFlightChecks;
 
-  blog: Blog = {
-    readTime: '10 minutes',
-    title: 'Pre-Flight Checks',
-    content: [ 'My Story', 'Helpful Resources' ],
-    image: 'assets/img/Koeln-Brueke.jpg',
-    likes: 0,
-    url: '/pre-flight-checks'
-  }
+  page = this.blog.url;
 
   clicked: boolean = false;
 
-  constructor( public blogService: BlogService ) { }
+  constructor( private blogService: BlogService, private seoService: SEOService ) { }
 
   ngOnInit(): void {
     this.blogService.checkBlog( this.page, this.blog ).then( blog => {
       this.blog = blog
     } );
+
+    this.seoService.extractBlogTags( this.blog );
   }
 
 }

@@ -20,7 +20,7 @@ export class PersonalImmigrationComponent implements OnInit {
 
   ngOnInit(): void {
     console.log( this.blog )
-    this.blogService.checkBlog( this.page, this.blog ).then( blog => {
+    this.blogService.updateBlog( this.page, this.blog ).then( blog => {
       this.blog = blog
     } );
 

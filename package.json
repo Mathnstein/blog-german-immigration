@@ -7,8 +7,7 @@
     "build": "ng build && tsc src/allBlogs.ts && node prerender-metadata.js",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "deploy": "npm run build && firebase deploy && git add . && npm run clean",
-    "clean": "del-cli ./src/allBlogs.js",
+    "deploy": "npm run build && firebase deploy && git add .",
     "e2e": "cypress open "
   },
   "private": true,

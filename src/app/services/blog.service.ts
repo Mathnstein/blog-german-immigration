@@ -21,7 +21,7 @@ export class BlogService {
     this.blogs = this.blogsRef.valueChanges();
   }
 
-  checkBlog( page: string, blog?: Blog ): Promise<Blog> {
+  checkBlog( page: string, blog: Blog ): Promise<Blog> {
     return this.dbRef.child( page ).once( "value" ).then( snapshot => {
       if ( !snapshot.exists() ) {
         if ( blog ) {
@@ -36,6 +36,14 @@ export class BlogService {
       }
     } );
   }
+
+  updateBlog( page: string, blog: Blog ): Promise<Blog> {
+    return this.dbRef.child( page ).once( "value" ).then( snapshot => {
+      this.createBlog( page, blog );
+      return snapshot.exportVal() as Blog;
+    } );
+  }
+
 
   getLikes( page: string ): Promise<number> {
     return this.dbRef.child( page ).once( "value" ).then( snapshot => {
